@@ -3,6 +3,7 @@ package com.apps.androidtwitterapp;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import com.apps.androidtwitterapp.models.Tweet;
 
@@ -42,24 +43,18 @@ public class ComposeActivity extends Activity {
 		params.put("status", tweetText );
 		TwitterClientApp.getRestClient().postTweet(params, new JsonHttpResponseHandler(){
 			@Override
-			public void onSuccess(JSONArray jsonTweets){
+			public void onSuccess(JSONObject jsonTweet){
 				
-				Intent data = new Intent();
 				
-				data.putExtra("jsonTweets", jsonTweets.toString() );
-
 				if (getParent() == null) {
-				    setResult(Activity.RESULT_OK, data);
+				    setResult(Activity.RESULT_OK);
 				} else {
-				    getParent().setResult(Activity.RESULT_OK, data);
+				    getParent().setResult(Activity.RESULT_OK);
 				}
 				finish();
 
 			}
-//			@Override
-//			public void onFailure(JSONArray jsonTweets){
-//				super.onFailure();
-//			}
+			
 
 		});
 		

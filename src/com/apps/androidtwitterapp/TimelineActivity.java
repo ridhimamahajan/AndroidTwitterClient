@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -22,10 +23,18 @@ public class TimelineActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_timeline);
+		updateAndDisplayTimeline();
+	}
+
+	public void updateAndDisplayTimeline() {
 		TwitterClientApp.getRestClient().getHomeTimeline(new JsonHttpResponseHandler(){
 			@Override
 			public void onSuccess(JSONArray jsonTweets){
-				updateAndDisplayTimeline(jsonTweets);
+				ArrayList<Tweet> tweet = Tweet.fromJson(jsonTweets);
+				ListView lvTweet = (ListView) findViewById(R.id.lvTweet);
+				TweetAdapter tweetAdapter = new TweetAdapter(getBaseContext(), tweet);
+				lvTweet.setAdapter(tweetAdapter);
+				//Log.d("DEBUG", jsonTweets.toString());
 			}
 
 			
@@ -47,23 +56,10 @@ public class TimelineActivity extends Activity {
 	
 	public void onActivityResult(int requestCode, int resultCode, Intent data){
 		if(resultCode == RESULT_OK && requestCode == 1 ){
-			JSONArray jsonTweets=null;
-			try{
-				jsonTweets= new JSONArray(data.getStringExtra("jsonArray"));
-			}
-			catch (JSONException e){
-				e.printStackTrace();
-			}
-			updateAndDisplayTimeline(jsonTweets);
+			updateAndDisplayTimeline();
 		}
 	}
-	public void updateAndDisplayTimeline(JSONArray jsonTweets) {
-		ArrayList<Tweet> tweet = Tweet.fromJson(jsonTweets);
-		ListView lvTweet = (ListView) findViewById(R.id.lvTweet);
-		TweetAdapter tweetAdapter = new TweetAdapter(getBaseContext(), tweet);
-		lvTweet.setAdapter(tweetAdapter);
-		Log.d("DEBUG", jsonTweets.toString());
-	}
+	
 	
 
 }
