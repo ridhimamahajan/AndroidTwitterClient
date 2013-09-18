@@ -15,19 +15,21 @@ import android.widget.ListView;
 
 public class TimelineFragment extends Fragment {
 	TweetAdapter tweetAdapter;
+	ListView lvTweets;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.fragment_tweet_list, container, false);
+		View v = inflater.inflate(R.layout.fragment_tweet_list, container, false);
+		lvTweets = (ListView) v.findViewById(R.id.lvTweet);
+		lvTweets.setAdapter(tweetAdapter);
+		return v;
 	}
 	
 	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 		ArrayList<Tweet> tweet = new ArrayList<Tweet>();
-		ListView lvTweet = (ListView) getActivity().findViewById(R.id.lvTweet);
 		tweetAdapter = new TweetAdapter(getActivity(), tweet);
-		lvTweet.setAdapter(tweetAdapter);
 	}
 
 	public TweetAdapter getTweetAdapter() {

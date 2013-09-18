@@ -29,19 +29,6 @@ public class TimelineActivity extends FragmentActivity implements TabListener {
 		//updateAndDisplayTimeline();
 	}
 
-//	public void updateAndDisplayTimeline() {
-//		timelineFragment = (TimelineFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentTweets);
-//		TwitterClientApp.getRestClient().getHomeTimeline(new JsonHttpResponseHandler(){
-//		
-//			@Override
-//			public void onSuccess(JSONArray jsonTweets){
-//				timelineFragment.getTweetAdapter().clear();
-//				timelineFragment.getTweetAdapter().addAll(Tweet.fromJson(jsonTweets));
-//			}
-//
-//			
-//		});
-//	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
