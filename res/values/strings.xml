@@ -4,11 +4,13 @@
     <string name="app_name">Rest Client Template</string>
     <string name="action_settings">Settings</string>
     <string name="action_compose">Compose</string>
+    <string name="action_profile">Profile</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_photos">Flickr Photos</string>
     <string name="login_label">Log in</string>
     <string name="title_activity_timeline">TimelineActivity</string>
     <string name="title_activity_compose">ComposeActivity</string>
     <string name="tweetButtonLabel">Tweet</string>
+    <string name="title_activity_profile">ProfileActivity</string>
 
 </resources>

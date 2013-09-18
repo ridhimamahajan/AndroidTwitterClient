@@ -12,5 +12,12 @@
         android:showAsAction="always"
         android:onClick="onComposeClick"
         android:title="@string/action_compose"/>
+    
+    <item
+        android:id="@+id/action_profile"
+        android:showAsAction="ifRoom"
+        android:onClick="onProfileClick"
+        android:title="@string/action_profile"
+        android:icon="@drawable/ic_profile"/>
 
 </menu>
